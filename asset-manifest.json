@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/ReactPract/movie_app/static/css/main.2060f182.css",
-    "main.js": "/ReactPract/movie_app/static/js/main.93532a29.js",
-    "index.html": "/ReactPract/movie_app/index.html",
-    "main.2060f182.css.map": "/ReactPract/movie_app/static/css/main.2060f182.css.map",
-    "main.93532a29.js.map": "/ReactPract/movie_app/static/js/main.93532a29.js.map"
+    "main.css": "/ReactPract/static/css/main.157c6220.css",
+    "main.js": "/ReactPract/static/js/main.96798f8d.js",
+    "index.html": "/ReactPract/index.html",
+    "main.157c6220.css.map": "/ReactPract/static/css/main.157c6220.css.map",
+    "main.96798f8d.js.map": "/ReactPract/static/js/main.96798f8d.js.map"
   },
   "entrypoints": [
-    "static/css/main.2060f182.css",
-    "static/js/main.93532a29.js"
+    "static/css/main.157c6220.css",
+    "static/js/main.96798f8d.js"
   ]
 }
