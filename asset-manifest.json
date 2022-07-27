@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/reactpract/movie_app/static/css/main.2060f182.css",
+    "main.js": "/reactpract/movie_app/static/js/main.93532a29.js",
+    "index.html": "/reactpract/movie_app/index.html",
+    "main.2060f182.css.map": "/reactpract/movie_app/static/css/main.2060f182.css.map",
+    "main.93532a29.js.map": "/reactpract/movie_app/static/js/main.93532a29.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2060f182.css",
+    "static/js/main.93532a29.js"
+  ]
+}
