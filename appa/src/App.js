@@ -1,25 +1,41 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+const Header = () => {
+    return (
+        <h2 className="title">Hello World</h2>
+    );
+};
+
+
+const MiniBody = () => {
+    const super_arr = [];
+    for (let i = 0; i < 50; i++) {
+        super_arr.push(i);
+    };
+    return (
+        <div className="mini__body">
+            {
+                super_arr.map(element => {
+                    return <p className={"index " + element}>
+                        index -&gt; {element}
+                    </p>
+                })
+            }
+        </div>
+    );
 }
 
-export default App;
+export class App extends React.Component {
+
+
+    render() {
+        return (
+            <div className="App">
+                <Header />
+                <MiniBody />
+            </div>
+        );
+    };
+};
