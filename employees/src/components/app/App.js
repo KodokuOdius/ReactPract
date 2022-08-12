@@ -17,7 +17,9 @@ export default class App extends React.Component {
                 { name: "Name 1", salary: 100, increase: true, id: 1, like: false },
                 { name: "Name 2", salary: 11, increase: false, id: 2, like: false },
                 { name: "Name 3", salary: 7987, increase: false, id: 3, like: true },
-            ]
+            ],
+            term: "",
+            filter: "all"
         };
     };
 
@@ -53,23 +55,74 @@ export default class App extends React.Component {
         ));
     };
 
+    searchEmp = (items, term) => {
+        if (term.length === 0) { return items; };
+
+        return items.filter(item => {
+            return item.name.indexOf(term) > -1;
+        });
+    };
+
+    onUpdateSearch = (term) => {
+        this.setState({ term });
+    };
+
+    filterPost = (items, filter) => {
+        switch (filter) {
+            case "like":
+                return items.filter(item => item.like);
+
+            case "moreThen":
+                return items.filter(item => item.salary > 1000);
+
+            default:
+                return items;
+        };
+    };
+
+    onFilterSelect = (filter) => {
+        this.setState({ filter });
+    };
+
+    onChangeSalary = (id, value) => {
+        if (/^\d+$/.test(value.slice(0, -1))) {
+            const value2 = parseInt(value.slice(0, -1));
+            this.setState(({ data }) => (
+                {
+                    data: data.map(item => {
+                        if (item.id === id) {
+                            return { ...item, salary: value2 }
+                        };
+                        return item;
+                    })
+                }
+            ));
+        };
+    };
+
     render() {
-        const { data } = this.state;
+        const { data, term, filter } = this.state;
         const employees = this.state.data.length;
         const increased = this.state.data.filter(item => item.increase).length;
+        const visibleData = this.filterPost(
+            this.searchEmp(data, term),
+            filter
+        );
+
         return (
             <div className="app">
                 <AppInfo employees={employees} increased={increased} />
 
 
                 <div className="search-panel">
-                    <SearchPanel />
-                    <AppFilter />
+                    <SearchPanel onUpdateSearch={this.onUpdateSearch} />
+                    <AppFilter filter={filter} onFilterSelect={this.onFilterSelect} />
                 </div>
 
-                <EmployeesList data={data}
+                <EmployeesList data={visibleData}
                     onDelete={this.deleteItem}
-                    onToggleProp={this.onToggleProp} />
+                    onToggleProp={this.onToggleProp}
+                    onChangeSalary={this.onChangeSalary} />
                 <EmployeesAddForm onSubmit={this.addItem} />
             </div>
         );

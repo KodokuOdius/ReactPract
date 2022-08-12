@@ -5,8 +5,8 @@ import './employees-list-item.css';
 export default class EmployeesListItem extends React.Component {
     render() {
         const {
-            name, salary,
-            onDelete, onToggleProp,
+            name, salary, 
+            onDelete, onToggleProp, onChangeSalary,
             increase, like } = this.props;
 
         const liClassNames =
@@ -20,7 +20,8 @@ export default class EmployeesListItem extends React.Component {
                     onClick={onToggleProp} data-toggle="like">
                     {name}
                 </span>
-                <input type="text" className="list-group-item-input" defaultValue={salary + "$"} />
+                <input type="text" className="list-group-item-input" defaultValue={salary + "$"}
+                    onBlurCapture={onChangeSalary} />
                 <div className='d-flex justify-content-center align-items-center'>
                     <button type="button"
                         className="btn-cookie btn-sm "
@@ -37,5 +38,5 @@ export default class EmployeesListItem extends React.Component {
                 </div>
             </li>
         )
-    }
-}
+    };
+};
