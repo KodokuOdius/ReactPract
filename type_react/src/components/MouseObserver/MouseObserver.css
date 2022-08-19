@@ -1,0 +1,23 @@
+.mouse-observer {
+    margin: 25px auto;
+    width: 700px;
+    height: 700px;
+    /* width: 100vw;
+    height: 100vh; */
+    position: relative;
+    border: 3px solid purple;
+    overflow: hidden;
+    cursor: none;
+}
+
+.mouse-observer__mouse {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: lightcoral;
+    border-radius: 50%;
+    pointer-events: none;
+    text-align: center;
+    font-size: 16pt;
+
+}
