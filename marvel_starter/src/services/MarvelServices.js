@@ -20,8 +20,6 @@ export default class MarvelService {
         const query = Object.entries(params).map(([key, value]) => {
             return `${key}=${value}`;
         }).join("&");
-        // md5(ts+privateKey+publicKey)
-        this.ts = this.ts + 1;
         const hash = "&hash=" + MD5(this.ts + this._privateKey + this._publicKey).toString();
         return this._apiBase + method + "?" + `ts=${this.ts}&` + query + this._apikey + hash;
     };
