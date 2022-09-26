@@ -21,13 +21,16 @@ export default class MarvelService {
             return `${key}=${value}`;
         }).join("&");
         const hash = "&hash=" + MD5(this.ts + this._privateKey + this._publicKey).toString();
-        return this._apiBase + method + "?" + `ts=${this.ts}&` + query + this._apikey + hash;
+        return this._apiBase + method + `?ts=${this.ts}&` + query + this._apikey + hash;
     };
 
     getAllCharacters = async () => {
         const url = this.createRequestUrl("characters");
         const res = this.getResource(url);
-        return res.data.results.map(this._transformCharacter);
+        const data = await res.then(result => {
+            return result.data.results.map(this._transformCharacter);
+        });
+        return data;
     };
 
     getCharacter = async (id) => {
@@ -38,11 +41,13 @@ export default class MarvelService {
 
     _transformCharacter = (character) => {
         return {
+            id: character.id,
             name: character.name,
             description: character.description,
             thumbnail: character.thumbnail.path + "." + character.thumbnail.extension,
             homePage: character.urls[0].url,
-            wiki: character.urls[1].url
+            wiki: character.urls[1].url,
+            comics: character.comics.items
         };
     };
 };

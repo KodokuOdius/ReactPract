@@ -4,14 +4,14 @@ import mjolnir from '../../resources/img/mjolnir.png';
 import Spinner from '../spinner/Spinner';
 import ErrorMessage from '../errorMessage/ErrorMessage';
 
-import MarvelServices from "../../services/MarvelServices";
+import MarvelService from "../../services/MarvelServices";
 
 
 class RandomChar extends Component {
-    constructor(props) {
-        super(props);
+
+    componentDidMount() {
         this.updateChar();
-    }
+    };
 
     state = {
         character: {},
@@ -19,7 +19,7 @@ class RandomChar extends Component {
         error: false
     };
 
-    marvelService = new MarvelServices();
+    marvelService = new MarvelService();
 
     onError = () => {
         this.setState({
@@ -70,6 +70,12 @@ class RandomChar extends Component {
 
 const View = ({ character }) => {
     const { name, description, thumbnail, homePage, wiki } = character;
+
+    let imgStyle = { "objectFit": "cover" };
+    if (thumbnail === "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg") {
+        imgStyle = { "objectFit": "contain" };
+    };
+
     let real_description = "There is no descriptions";
     if (typeof (description) === "string" && description.length > 0 && description.length < 100) {
         real_description = description;
@@ -79,7 +85,7 @@ const View = ({ character }) => {
 
     return (
         <div className="randomchar__block">
-            <img src={thumbnail} alt="Random character" className="randomchar__img" />
+            <img src={thumbnail} alt="Random character" className="randomchar__img" style={imgStyle} />
             <div className="randomchar__info">
                 <p className="randomchar__name">{name}</p>
                 <p className="randomchar__descr">
